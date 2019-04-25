@@ -1,8 +1,8 @@
 name: flutter_utils
 description: A new Flutter package project.
-version: 0.0.1
-author:
-homepage:
+version: 1.0.1
+author: cy<27749591@qq.com>
+homepage: https://github.com/cy20061121/flutter_utils
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
