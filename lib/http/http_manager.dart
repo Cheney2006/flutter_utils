@@ -56,10 +56,10 @@ class HttpManager {
     if (baseUrl != null) {
       _client.options.baseUrl = baseUrl;
     }
-    if (connectTimeout > 0) {
+    if (connectTimeout != null) {
       _client.options.connectTimeout = connectTimeout;
     }
-    if (receiveTimeout > 0) {
+    if (receiveTimeout != null) {
       _client.options.receiveTimeout = receiveTimeout;
     }
     if (interceptors != null && interceptors.length > 0) {
