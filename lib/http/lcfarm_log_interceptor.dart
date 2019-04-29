@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:dio/dio.dart';
-import 'package:flutter_utils/log_util.dart';
+import 'package:flutter_common_utils/log_util.dart';
 
 /// @desc  自定义日志拦截器
 ///@time 2019/3/18 9:15 AM

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_utils/http/http_error.dart';
-import 'package:flutter_utils/http/lcfarm_log_interceptor.dart';
-import 'package:flutter_utils/log_util.dart';
+import 'package:flutter_common_utils/http/http_error.dart';
+import 'package:flutter_common_utils/http/lcfarm_log_interceptor.dart';
+import 'package:flutter_common_utils/log_util.dart';
 
 /// @desc  封装 http 请求
 /// @time 2019/3/15 10:35 AM
