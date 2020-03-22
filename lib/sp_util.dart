@@ -2,7 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// @desc 用来做shared_preferences的存储
 /// @time 2019-05-21 17:12
-/// @author chenyun
+/// @author Cheney
 class SpUtil {
   SpUtil._internal();
   static SpUtil _spUtils = SpUtil._internal();

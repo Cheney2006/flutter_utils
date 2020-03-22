@@ -1,6 +1,6 @@
 /// @desc 正则表达式
 /// @time 2019-07-19 10:54
-/// @author chenyun
+/// @author Cheney
 
 /// id card province dict.
 const List<String> ID_CARD_PROVINCE_DICT = [

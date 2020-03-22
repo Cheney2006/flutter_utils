@@ -39,7 +39,7 @@ Map<int, int> MONTH_DAY = {
 
 /// @desc  日期工具类
 /// @time 2019/4/12 3:51 PM
-/// @author chenyun
+/// @author Cheney
 class DateUtil {
   /// get DateTime By DateStr.
   static DateTime getDateTime(String dateStr) {

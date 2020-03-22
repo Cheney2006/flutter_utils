@@ -7,7 +7,7 @@ void log2Console(Object object) {
 
 /// @desc  自定义日志拦截器
 ///@time 2019/3/18 9:15 AM
-/// @author chenyun
+/// @author Cheney
 class LcfarmLogInterceptor extends Interceptor {
   LcfarmLogInterceptor({
     this.request = true,

@@ -4,7 +4,7 @@ import 'package:event_bus/event_bus.dart';
 
 /// @desc EventBus 单例
 /// @time 2019-04-25 11:00
-/// @author chenyun
+/// @author Cheney
 class EventManager {
   static final EventManager _instance = EventManager._internal();
 

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 /// @desc  网络请求错误
 /// @time 2019/3/20 10:02 AM
-/// @author chenyun
+/// @author Cheney
 class HttpError {
   ///HTTP 状态码
   static const int UNAUTHORIZED = 401;

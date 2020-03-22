@@ -1,6 +1,6 @@
 /// @desc  日志输出
 /// @time 2019/3/15 9:58 AM
-/// @author chenyun
+/// @author Cheney
 class LogUtil {
   static const String _TAG_DEFAULT = "###Lcfarm###";
 

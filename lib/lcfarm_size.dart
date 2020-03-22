@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// @desc:屏幕适配
 /// @time 2019/3/11 5:07 PM
-/// @author chenyun
+/// @author Cheney
 class LcfarmSize {
   static LcfarmSize instance = LcfarmSize();
 

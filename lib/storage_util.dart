@@ -29,7 +29,7 @@ import 'object_util.dart';
 
 /// @desc 存储管理类
 /// @time 2019-12-03 14:57
-/// @author chenyun
+/// @author Cheney
 class StorageUtil {
   static Future<Directory> _initTempDir() {
     return getTemporaryDirectory();

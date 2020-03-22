@@ -1,6 +1,6 @@
 /// @desc 对象管理工具类
 /// @time 2019-12-03 15:00
-/// @author chenyun
+/// @author Cheney
 class ObjectUtil {
   /// Returns true if the string is null or 0-length.
   static bool isEmptyString(String str) {

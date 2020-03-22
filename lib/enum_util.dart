@@ -1,6 +1,6 @@
 /// @desc 枚举工具类
 /// @time 2019-09-17 17:11
-/// @author chenyun
+/// @author Cheney
 class EnumUtil {
   ///枚举格式化 String
   static String enumValueToString(Object o) => o.toString().split('.').last;

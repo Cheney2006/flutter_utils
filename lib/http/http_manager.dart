@@ -22,7 +22,7 @@ typedef T JsonParse<T>(dynamic data);
 /// 2>：如果比对结果是一样，那么直接return返回，不做任何操作；
 /// 3>：如果比对结果不一样，就去刷新列表数据，同时把之前数据库中的数据删除，然后存储新的数据；
 /// @time 2019/3/15 10:35 AM
-/// @author chenyun
+/// @author Cheney
 class HttpManager {
   ///同一个CancelToken可以用于多个请求，当一个CancelToken取消时，所有使用该CancelToken的请求都会被取消，一个页面对应一个CancelToken。
   Map<String, CancelToken> _cancelTokens =  Map<String, CancelToken>();
