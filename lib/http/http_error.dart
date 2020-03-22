@@ -15,60 +15,64 @@ class HttpError {
   static const int GATEWAY_TIMEOUT = 504;
 
   ///未知错误
-  static const int UNKNOWN = -9999999;
+  static const String UNKNOWN = "UNKNOWN";
 
   ///解析错误
-  static const int PARSE_ERROR = -9999998;
+  static const String PARSE_ERROR = "PARSE_ERROR";
 
   ///网络错误
-  static const int NETWORK_ERROR = -9999997;
+  static const String NETWORK_ERROR = "NETWORK_ERROR";
 
   ///协议错误
-  static const int HTTP_ERROR = -9999996;
+  static const String HTTP_ERROR = "HTTP_ERROR";
 
   ///证书错误
-  static const int SSL_ERROR = -9999995;
+  static const String SSL_ERROR = "SSL_ERROR";
 
   ///连接超时
-  static const int CONNECT_TIMEOUT = -9999994;
+  static const String CONNECT_TIMEOUT = "CONNECT_TIMEOUT";
 
   ///响应超时
-  static const int RECEIVE_TIMEOUT = -9999993;
+  static const String RECEIVE_TIMEOUT = "RECEIVE_TIMEOUT";
 
   ///发送超时
-  static const int SEND_TIMEOUT = -9999992;
+  static const String SEND_TIMEOUT = "SEND_TIMEOUT";
 
   ///网络请求取消
-  static const int CANCEL = -9999991;
+  static const String CANCEL = "CANCEL";
 
-  int code;
+  String code;
 
   String message;
 
   HttpError(this.code, this.message);
 
-  HttpError.DioError(DioError error) {
+  HttpError.dioError(DioError error) {
     message = error.message;
     switch (error.type) {
       case DioErrorType.CONNECT_TIMEOUT:
-//        code = CONNECT_TIMEOUT;
-//        break;
+        code = CONNECT_TIMEOUT;
+        message = "网络连接超时，请检查网络设置";
+        break;
       case DioErrorType.RECEIVE_TIMEOUT:
-//        code = RECEIVE_TIMEOUT;
-//        break;
+        code = RECEIVE_TIMEOUT;
+        message = "服务器异常，请稍后重试！";
+        break;
       case DioErrorType.SEND_TIMEOUT:
-//        code = SEND_TIMEOUT;
-//        break;
+        code = SEND_TIMEOUT;
+        message = "网络连接超时，请检查网络设置";
+        break;
       case DioErrorType.RESPONSE:
         code = HTTP_ERROR;
+        message = "服务器异常，请稍后重试！";
         break;
       case DioErrorType.CANCEL:
         code = CANCEL;
+        message = "请求已被取消，请重新请求";
         break;
       case DioErrorType.DEFAULT:
-
-        ///todo 解析出网络导常 NETWORK_ERROR
         code = UNKNOWN;
+        message = "网络异常，请稍后重试！";
         break;
     }
   }

@@ -1,8 +1,8 @@
 name: flutter_common_utils
 description: A Common Utils Flutter package project.
-version: 1.0.3
-author: cy<27749591@qq.com>
-homepage: https://github.com/cy20061121/flutter_utils
+version: 1.1.0
+#author: Cheney<27749591@qq.com>
+homepage: https://github.com/Cheney2006/flutter_utils
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -11,9 +11,23 @@ dependencies:
   flutter:
     sdk: flutter
 
-  dio: ^2.1.0
+  connectivity: ^0.4.4
+
+  path_provider: ^1.3.0
+
+  dio: ^3.0.7
+  #  dio:
+  #    git:
+  #      url: https://github.com/cy20061121/dio
+  #      path: dio
+  #  dio:
+  #    path: ../../../dio/dio
 
   event_bus: ^1.1.0
+
+  shared_preferences: ^0.5.6
+
+  synchronized: '>=2.0.2 <4.0.0'
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,9 @@
-import 'dart:math' as math;
-
 import 'package:dio/dio.dart';
 import 'package:flutter_common_utils/log_util.dart';
+
+void log2Console(Object object) {
+  LogUtil.v(object);
+}
 
 /// @desc  自定义日志拦截器
 ///@time 2019/3/18 9:15 AM
@@ -10,11 +12,11 @@ class LcfarmLogInterceptor extends Interceptor {
   LcfarmLogInterceptor({
     this.request = true,
     this.requestHeader = true,
-    this.requestBody = true,
+    this.requestBody = false,
     this.responseHeader = true,
-    this.responseBody = true,
+    this.responseBody = false,
     this.error = true,
-    this.logSize = 2048,
+    this.logPrint = log2Console,
   });
 
   /// Print request [Options]
@@ -35,83 +37,85 @@ class LcfarmLogInterceptor extends Interceptor {
   /// Print error message
   bool error;
 
-  /// Log size per print
-  final logSize;
+  /// Log printer; defaults print log to console.
+  /// In flutter, you'd better use debugPrint.
+  /// you can also write log in a file, for example:
+  ///```dart
+  ///  var file=File("./log.txt");
+  ///  var sink=file.openWrite();
+  ///  dio.interceptors.add(LogInterceptor(logPrint: sink.writeln));
+  ///  ...
+  ///  await sink.close();
+  ///```
+  void Function(Object object) logPrint;
 
   @override
-  onRequest(RequestOptions options) {
-    LogUtil.v('*** Request ***');
+  Future onRequest(RequestOptions options) async {
+    logPrint('*** Request ***');
     printKV('uri', options.uri);
 
     if (request) {
       printKV('method', options.method);
-      printKV('contentType', options.contentType.toString());
-      printKV('responseType', options.responseType.toString());
+      printKV('responseType', options.responseType?.toString());
       printKV('followRedirects', options.followRedirects);
       printKV('connectTimeout', options.connectTimeout);
       printKV('receiveTimeout', options.receiveTimeout);
       printKV('extra', options.extra);
     }
     if (requestHeader) {
-      StringBuffer stringBuffer = new StringBuffer();
-      options.headers.forEach(
-          (key, v) => stringBuffer.write('\n${LogUtil.tagDefault} $key:$v'));
-      printKV('header', stringBuffer.toString());
-      stringBuffer.clear();
+      logPrint('headers:');
+      options.headers.forEach((key, v) => printKV(" $key", v));
     }
     if (requestBody) {
-      LogUtil.v("data:");
+      logPrint("data:");
       printAll(options.data);
     }
-    LogUtil.v("");
+    logPrint("");
   }
 
   @override
-  onError(DioError err) {
+  Future onError(DioError err) async {
     if (error) {
-      LogUtil.v('*** DioError ***:');
-      LogUtil.v(err);
+      logPrint('*** DioError ***:');
+      logPrint("uri: ${err.request.uri}");
+      logPrint("$err");
       if (err.response != null) {
         _printResponse(err.response);
       }
+      logPrint("");
     }
   }
 
   @override
-  onResponse(Response response) {
-    LogUtil.v("*** Response ***");
+  Future onResponse(Response response) async {
+    logPrint("*** Response ***");
     _printResponse(response);
   }
 
   void _printResponse(Response response) {
-    printKV('uri', response.request.uri);
+    printKV('uri', response.request?.uri);
     if (responseHeader) {
       printKV('statusCode', response.statusCode);
-      if (response.isRedirect) printKV('redirect', response.realUri);
-      LogUtil.v("headers:");
-      LogUtil.v("" + response.headers.toString().replaceAll("\n", "\n "));
+      if (response.isRedirect == true) {
+        printKV('redirect', response.realUri);
+      }
+      if (response.headers != null) {
+        logPrint("headers:");
+        response.headers.forEach((key, v) => printKV(" $key", v.join(",")));
+      }
     }
     if (responseBody) {
-      LogUtil.v("Response Text:");
+      logPrint("Response Text:");
       printAll(response.toString());
     }
-    LogUtil.v("");
+    logPrint("");
   }
 
   printKV(String key, Object v) {
-    LogUtil.v('$key: $v');
+    logPrint('$key: $v');
   }
 
   printAll(msg) {
-    msg.toString().split("\n").forEach(_printAll);
-  }
-
-  _printAll(String msg) {
-    int groups = (msg.length / logSize).ceil();
-    for (int i = 0; i < groups; ++i) {
-      LogUtil.v((i > 0 ? '<<Log follows the previous line: ' : '') +
-          msg.substring(
-              i * logSize, math.min<int>(i * logSize + logSize, msg.length)));
-    }
+    msg.toString().split("\n").forEach(logPrint);
   }
 }

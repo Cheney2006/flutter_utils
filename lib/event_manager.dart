@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:event_bus/event_bus.dart';
 
 /// @desc EventBus 单例
@@ -19,11 +21,18 @@ class EventManager {
 
   EventBus get eventBus => _bus;
 
-//  void post(event) {
-//    _bus.fire(event);
-//  }
-//
-//  Stream<T> on<T>() {
-//    return _bus.on();
-//  }
+  ///发送消息
+  void post(event) {
+    _bus.fire(event);
+  }
+
+  ///监听事件
+  Stream<T> on<T>() {
+    return _bus.on();
+  }
+
+  ///销毁
+  void destroy() {
+    _bus.destroy();
+  }
 }

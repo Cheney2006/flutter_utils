@@ -8,5 +8,5 @@ A common utils Flutter package project.
 
 ```yaml
 dependencies:
-  flutter_common_utils: ^1.0.3
+  flutter_common_utils: ^1.1.0
 ```

@@ -51,7 +51,7 @@ class DateUtil {
   static DateTime getDateTimeByMilliseconds(int milliseconds,
       {bool isUtc = false}) {
     DateTime dateTime =
-        new DateTime.fromMillisecondsSinceEpoch(milliseconds, isUtc: isUtc);
+         DateTime.fromMillisecondsSinceEpoch(milliseconds, isUtc: isUtc);
     return dateTime;
   }
 
@@ -64,6 +64,11 @@ class DateUtil {
   /// get Now Date Milliseconds.
   static int getNowDateMilliseconds() {
     return DateTime.now().millisecondsSinceEpoch;
+  }
+
+  /// get Now Date Microseconds.
+  static int getNowDateMicroseconds() {
+    return DateTime.now().microsecondsSinceEpoch;
   }
 
   /// get Now Date Str.(yyyy-MM-dd HH:mm:ss)
@@ -407,5 +412,16 @@ class DateUtil {
         DateTime.fromMillisecondsSinceEpoch(milliseconds, isUtc: isUtc);
     DateTime now = isUtc ? DateTime.now().toUtc() : DateTime.now().toLocal();
     return old.year == now.year && old.month == now.month && old.day == now.day;
+  }
+
+  static DateTime firstDayOfMonth(DateTime month) {
+    return DateTime.utc(month.year, month.month, 1, 12);
+  }
+
+  static DateTime lastDayOfMonth(DateTime month) {
+    final date = month.month < 12
+        ? DateTime.utc(month.year, month.month + 1, 1, 12)
+        : DateTime.utc(month.year + 1, 1, 1, 12);
+    return date.subtract(const Duration(days: 1));
   }
 }

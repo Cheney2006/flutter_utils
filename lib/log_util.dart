@@ -25,7 +25,7 @@ class LogUtil {
   }
 
   static void _printLog(String tag, String stag, Object object) {
-    StringBuffer sb = new StringBuffer();
+    StringBuffer sb = StringBuffer();
     sb.write((tag == null || tag.isEmpty) ? tagDefault : tag);
     sb.write(stag);
     sb.write(object);
